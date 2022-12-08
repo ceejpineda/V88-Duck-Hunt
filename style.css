@@ -23,6 +23,11 @@ body{
 
 .header{
     color: white;
+    opacity: 0;
+    transition:opacity 1s ease-in;
+}
+.animate{
+    opacity: 1;
 }
 
 .body{
@@ -48,8 +53,11 @@ body{
     border-style: solid;
     box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.565);
 }
+#theme{
+    display: none;
+}
 .score{
-    width: 90%;
+    width: 95%;
     align-self: flex-start;
     display: flex;
     align-items: center;

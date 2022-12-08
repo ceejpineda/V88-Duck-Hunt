@@ -1,6 +1,7 @@
 const audio = new Audio('./gun3.mp3')
+//const music = new Audio('./DuckHunt.mp3');
+//music.preload = 'auto';
 audio.preload = 'auto';
-audio.load();
 
 const mainScreen = document.querySelector(".mainScreen")
 const body = document.querySelector('body');
@@ -20,7 +21,7 @@ const spawnBasicBirdsL = () =>{
     bird1.style.position = 'absolute';
     bird1.src = './duck1.gif';
     bird1.style.visibility = 'hidden'
-    bird1.style.top = randomPos(130,600) + 'px';
+    bird1.style.top = randomPos(150,600) + 'px';
 
     bird1.style.left = '200px';
     mainScreen.appendChild(bird1);
@@ -36,7 +37,7 @@ const spawnBasicBirdsR = () =>{
     bird1.style.position = 'absolute';
     bird1.src = './duck1.gif';
     bird1.style.visibility = 'hidden'
-    bird1.style.top = randomPos(130,600) + 'px';
+    bird1.style.top = randomPos(150,600) + 'px';
 
     bird1.style.left = '1600px';
     mainScreen.appendChild(bird1);
@@ -83,10 +84,24 @@ const gunshot = async ()=>{
 }
 
 const gameStart = () =>{
+    const mainMenu = document.querySelector('.mainMenu');
+    const header = document.querySelector('.header');
+    const scoreContainer = document.getElementById('score');
+    const music = document.getElementById('theme');
+    header.classList.add('animate');
+    music.volume = 0.3;
+    music.play();
+    let score = 0;
+
+    scoreContainer.innerText = score;
+
+    mainMenu.style.visibility = 'hidden';
     mainScreen.addEventListener('click',async(e)=>{
         e.preventDefault();
         if(e.target.classList.contains('bird')){
             e.target.remove();
+            score += 10;
+            scoreContainer.innerText = score;
         }
         console.log(e)
         console.log(e.clientX,e.clientY);
@@ -120,13 +135,14 @@ const explosionMaker = async (e)=>{
 
 const easyButton = document.getElementById('easy');
 
-easyButton.addEventListener('click', ()=>{
-    console.log('hello')
+easyButton.addEventListener('click', (e)=>{
     difficulty = 1;
     gameStart();
+    const difficultyContainer = document.getElementById('difficulty')
+    difficultyContainer.innerText = easyButton.innerHTML;
 })
 
-setInterval(spawnBasicBirdsL, 2000);
-setInterval(spawnBasicBirdsR, 3000);
+setInterval(spawnBasicBirdsL, 3000);
+setInterval(spawnBasicBirdsR, 4000);
 setInterval(birdMovementsL, 5);
 setInterval(birdMovementsR, 5);
