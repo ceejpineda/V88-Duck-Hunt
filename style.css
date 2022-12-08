@@ -23,7 +23,7 @@ body{
 
 .header{
     color: white;
-    opacity: 0;
+    opacity: 0.01;
     transition:opacity 1s ease-in;
 }
 .header h1{
@@ -33,6 +33,26 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.footer{
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+.footer p{
+    align-self: center;
+    justify-self: center;
+}
+.footer a:visited{
+    color: white;
+}
+.footer img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 .lifePoints{
     opacity: 0;
