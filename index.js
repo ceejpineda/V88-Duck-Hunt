@@ -5,12 +5,14 @@ audio.load();
 const mainScreen = document.querySelector(".mainScreen")
 const body = document.querySelector('body');
 
+let difficulty = 0;
+
 const gameLoop = () =>{
-    spawnBirds();
-    //checkScore();
 }
 
 const spawnBasicBirdsL = () =>{
+    if(difficulty == 0) return;
+
     const bird1 = new Image();
     bird1.classList.add('bird');
     bird1.classList.add('birdL');
@@ -18,13 +20,15 @@ const spawnBasicBirdsL = () =>{
     bird1.style.position = 'absolute';
     bird1.src = './duck1.gif';
     bird1.style.visibility = 'hidden'
-    bird1.style.top = randomPos(80,500) + 'px';
+    bird1.style.top = randomPos(130,600) + 'px';
 
     bird1.style.left = '200px';
     mainScreen.appendChild(bird1);
 }
 
 const spawnBasicBirdsR = () =>{
+    if(difficulty == 0) return;
+
     const bird1 = new Image();
     bird1.classList.add('bird');
     bird1.classList.add('birdR');
@@ -32,21 +36,22 @@ const spawnBasicBirdsR = () =>{
     bird1.style.position = 'absolute';
     bird1.src = './duck1.gif';
     bird1.style.visibility = 'hidden'
-    bird1.style.top = randomPos(80,500) + 'px';
+    bird1.style.top = randomPos(130,600) + 'px';
 
     bird1.style.left = '1600px';
     mainScreen.appendChild(bird1);
 }
 
 const birdMovementsR = () =>{
+    if(difficulty == 0) return;
     const birds = document.querySelectorAll('.birdR');
     birds.forEach(bird => {
         if(bird == null) return;    
         let pos = parseInt(bird.style.left);
-        if(pos < 280){
+        if(pos < 300){
             bird.remove();
         }
-        if(pos < 1500){
+        if(pos < 1550){
             bird.style.visibility = 'visible';
         }
         pos--;
@@ -55,6 +60,7 @@ const birdMovementsR = () =>{
 };
 
 const birdMovementsL = () =>{
+    if(difficulty == 0) return;
     const birds = document.querySelectorAll('.birdL');
     birds.forEach(bird => {
         if(bird == null) return;    
@@ -62,7 +68,7 @@ const birdMovementsL = () =>{
         if(pos > 280){
             bird.style.visibility = 'visible';
         }
-        if(pos > 1500){
+        if(pos > 1550){
             bird.remove();
         }
         pos++;
@@ -76,16 +82,19 @@ const gunshot = async ()=>{
     click.play();
 }
 
-mainScreen.addEventListener('click',async(e)=>{
-    e.preventDefault();
-    if(e.target.classList.contains('bird')){
-        e.target.remove();
-    }
-    console.log(e)
-    console.log(e.clientX,e.clientY);
-    gunshot();
-    explosionMaker(e);
-})
+const gameStart = () =>{
+    mainScreen.addEventListener('click',async(e)=>{
+        e.preventDefault();
+        if(e.target.classList.contains('bird')){
+            e.target.remove();
+        }
+        console.log(e)
+        console.log(e.clientX,e.clientY);
+        gunshot();
+        explosionMaker(e);
+        setTimeout(explosionRemover, 500);
+    })
+}
 
 function explosionRemover(){
     const elements = document.querySelectorAll('.explosion');
@@ -107,9 +116,15 @@ const explosionMaker = async (e)=>{
     explosion.style.top = e.clientY - 25 + 'px';
     explosion.src = './xpl.gif';
     mainScreen.appendChild(explosion);
-    setTimeout(explosionRemover, 1000);
 }
 
+const easyButton = document.getElementById('easy');
+
+easyButton.addEventListener('click', ()=>{
+    console.log('hello')
+    difficulty = 1;
+    gameStart();
+})
 
 setInterval(spawnBasicBirdsL, 2000);
 setInterval(spawnBasicBirdsR, 3000);

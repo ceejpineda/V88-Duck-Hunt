@@ -1,15 +1,24 @@
+@font-face {
+    font-family: 'PressStart';
+    src: url("./fonts/PressStart2P-Regular.ttf");
+}
+
 *, *::after,*::before{
     padding: 0;
     margin: 0;
 }
+
 body{
+    font-family: 'PressStart', sans-serif;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
     background-color: #121212;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    z-index: 99;
 }
 
 .header{
@@ -17,11 +26,9 @@ body{
 }
 
 .body{
-    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .mainScreen{
@@ -30,6 +37,38 @@ body{
     background-image: url('./stage.png');
     cursor: crosshair;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-align: center;
+    border-image: linear-gradient(#0088ff, #bb00ff) 40;
+    border-width: 5px;
+    border-style: solid;
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.565);
+}
+.score{
+    width: 90%;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+.mainMenu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.lifePoints{
+    margin: 20px;
+}
+.lifePoints p{
+    font-size: 20px;
+}
+.mainScreen h1{
+    font-size: 60px;
 }
 .explosion{
     width: 50px;
@@ -40,12 +79,25 @@ body{
     width: 70px;
     height: 70px;
     object-fit: contain;
-    z-index: 1;
 }
 .birdR{
     transform: scaleX(-1);
 }
 img{
     user-select: none;
-    z-index: 1;
+}
+
+.difficulty button{
+    font-family: 'PressStart';
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: none;
+    z-index: 50px;
+}
+.difficulty button:hover{
+    cursor: pointer;
+    background-color: skyblue;
+    border: 5px solid black;
+    font-size: 20px;
 }
