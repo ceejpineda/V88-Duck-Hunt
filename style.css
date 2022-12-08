@@ -1,0 +1,35 @@
+*, *::after,*::before{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    color: white;
+}
+
+.body{
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainScreen{
+    width: 1280px;
+    height: 769px;
+    background-image: url('./stage.png');
+    cursor: crosshair;
+    overflow: hidden;
+}
+.explosion{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
