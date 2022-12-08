@@ -34,7 +34,10 @@ body{
     align-items: center;
     justify-content: center;
 }
-
+.lifePoints{
+    opacity: 0;
+    transition:opacity 1s ease-in;
+}
 .mainScreen{
     width: 1280px;
     height: 769px;
@@ -88,6 +91,7 @@ body{
     width: 70px;
     height: 70px;
     object-fit: contain;
+    z-index: 9;
 }
 .birdR{
     transform: scaleX(-1);
@@ -118,6 +122,7 @@ img{
     height: 80px;
 }
 .duck3div{
+    z-index: 3;
     width: 300px;
     height: 300px;
     position: absolute;
@@ -138,4 +143,8 @@ img{
 @-webkit-keyframes orbit{
     from {-webkit-transform:rotate(0deg)}
     to{-webkit-transform:rotate(360deg)}
+}
+
+p, h1, img{
+    user-select: none;
 }

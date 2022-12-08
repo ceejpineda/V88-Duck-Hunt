@@ -1,5 +1,7 @@
-const audio = new Audio('./gun3.mp3')
+const audio = new Audio('./gun3.mp3');
 audio.preload = 'auto';
+const hurt = new Audio('./hurt.mp3');
+hurt.preload = 'auto';
 
 const mainScreen = document.querySelector(".mainScreen")
 const body = document.querySelector('body');
@@ -92,7 +94,10 @@ const birdMovementsR = () =>{
         let pos = parseInt(bird.style.left);
         if(pos < 300){
             bird.remove();
+            hurt.play();
+            blink();
             hp--;
+            bird.remove();
         }
         if(pos < 1550){
             bird.style.visibility = 'visible';
@@ -113,7 +118,10 @@ const birdMovementsL = () =>{
         }
         if(pos > 1550){
             bird.remove();
+            hurt.play();
+            blink();
             hp--;
+            bird.remove();
         }
         if(bird.classList.contains('normal')){
             let posY = parseInt(bird.style.top); //y pos
@@ -157,10 +165,12 @@ const gameStart = () =>{
     const scoreContainer = document.getElementById('score');
     const scoreDiv = document.querySelector('.score')
     const music = document.getElementById('theme');
+    const lifePoints = document.querySelector('.lifePoints');
     scoreContainer.setAttribute('draggable', false)
     header.classList.add('animate');
     scoreDiv.classList.add('animate');
-    music.volume = 0.3;
+    lifePoints.classList.add('animate');
+    music.volume = 0.2;
     music.play();
 
     scoreContainer.innerText = score;
@@ -169,6 +179,9 @@ const gameStart = () =>{
     mainScreen.addEventListener('click',async(e)=>{
         e.preventDefault();
         if(e.target.classList.contains('bird')){
+            if(e.target.classList.contains('duck3')){
+                e.target.parentNode.remove();
+            };
             e.target.remove();
             score += 10;
             scoreContainer.innerText = score;
@@ -187,8 +200,17 @@ function explosionRemover(){
     });
 }
 
-function randomPos(min, max) {
+const randomPos = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const blink = () => {
+    mainScreen.style.background = 'rgba(196, 0, 21, 0.5)';
+    setTimeout(backgroundBack,30);
+}
+const backgroundBack= () =>{
+    mainScreen.style.background = "none";
+    mainScreen.style.backgroundImage = `url('./stage.png')`;
 }
 
 const explosionMaker = async (e)=>{
@@ -207,7 +229,7 @@ const winOrLose = () =>{
     if(hp == 0){
         alert('You Lose! Please Refresh to Play again');
     }
-    if(score == 150){
+    if(score == 300){
         alert('You Win! Please Refresh to Play again')
     }
     for(let i=0; i<hp; i++){
