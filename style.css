@@ -61,7 +61,7 @@ body{
 .mainScreen{
     width: 1280px;
     height: 769px;
-    background-image: url('./stage.png');
+    background-image: url('./assets/stage.png');
     cursor: crosshair;
     overflow: hidden;
     display: flex;

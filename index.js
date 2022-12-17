@@ -1,6 +1,6 @@
-const audio = new Audio('./gun3.mp3');
+const audio = new Audio('./assets/gun3.mp3');
 audio.preload = 'auto';
-const hurt = new Audio('./hurt.mp3');
+const hurt = new Audio('./assets/hurt.mp3');
 hurt.preload = 'auto';
 
 const mainScreen = document.querySelector(".mainScreen")
@@ -20,7 +20,7 @@ const spawnBasicBirdsL = () =>{
     if(difficulty == 0) return;
 
     const bird1 = birdFactory('birdL', 'easy');
-    bird1.src = './duck1.gif';
+    bird1.src = './assets/duck1.gif';
     mainScreen.appendChild(bird1);
 }
 
@@ -28,7 +28,7 @@ const spawnBasicBirdsR = () =>{
     if(difficulty == 0) return;
 
     const bird1 = birdFactory('birdR', 'easy');
-    bird1.src = './duck1.gif';
+    bird1.src = './assets/duck1.gif';
     mainScreen.appendChild(bird1);
 }
 
@@ -37,7 +37,7 @@ const spawnNormalBirdsL = () =>{
     if(difficulty < 2) return;
 
     const bird1 = birdFactory('birdL', 'normal');
-    bird1.src = './duck2.gif';
+    bird1.src = './assets/duck2.gif';
     mainScreen.appendChild(bird1);
 
 
@@ -50,7 +50,7 @@ const spawnHardBird = () =>{
 
     const div = document.createElement('div');
     const duck3 = new Image();
-    duck3.src = './duck3.gif';
+    duck3.src = './assets/duck3.gif';
     duck3.classList.add('duck3');
     div.classList.add('birdL');
     duck3.setAttribute('draggable', false)
@@ -220,7 +220,7 @@ const explosionMaker = async (e)=>{
     explosion.setAttribute('draggable', false)
     explosion.style.left = e.clientX - 25 + 'px';
     explosion.style.top = e.clientY - 25 + 'px';
-    explosion.src = './xpl.gif';
+    explosion.src = './assets/xpl.gif';
     mainScreen.appendChild(explosion);
 }
 
