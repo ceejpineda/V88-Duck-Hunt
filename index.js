@@ -210,7 +210,7 @@ const blink = () => {
 }
 const backgroundBack= () =>{
     mainScreen.style.background = "none";
-    mainScreen.style.backgroundImage = `url('./stage.png')`;
+    mainScreen.style.backgroundImage = `url('./assets/stage.png')`;
 }
 
 const explosionMaker = async (e)=>{
